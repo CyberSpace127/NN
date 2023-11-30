@@ -41,9 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main_app.apps.MainAppConfig',
-    'import_export',
     'rest_framework',
-    'django_tables2'
 
 
 ]
