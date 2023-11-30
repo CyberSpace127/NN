@@ -1,0 +1,14 @@
+{% extends 'main_app/base.html' %}
+
+{% block content %}
+    <h1>Create New Table for RJU</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Create</button>
+    </form>
+    <a href="{% url 'rju_table' %}">Back to List</a>
+
+{% endblock %}
+

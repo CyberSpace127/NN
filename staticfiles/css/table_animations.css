@@ -1,0 +1,13 @@
+table {
+    animation: fadeIn 0.01s;
+}
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

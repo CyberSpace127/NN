@@ -1,0 +1,39 @@
+<!-- tiptable_list.html -->
+{% extends 'Tip_ras/basess.html' %}
+
+{% block title %}TipTable List{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">TipTable List</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>№</th>
+                    <th>Наименование</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tiptable in tiptable %}
+                    <tr>
+                        <td>{{ tiptable.id }}</td>
+                        <td>{{ tiptable.name_type }}</td>
+                        <td>
+                            <a href="{% url 'tiptable_detail' tiptable.pk %}" class="btn btn-info btn-sm">
+                                <i class="fas fa-info-circle"></i> Details
+                            </a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3">No TipTable records available.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{% url 'tiptable_create' %}" class="btn btn-primary mt-4">
+        <i class="fas fa-plus"></i> Создать новый Тип таблицу
+    </a>
+{% endblock %}

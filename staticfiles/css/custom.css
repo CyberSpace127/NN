@@ -1,0 +1,60 @@
+/* custom.css */
+
+/* Change the background color of the navigation bar */
+.navbar {
+    background-color: #3498db;
+}
+
+/* Change the text color of navigation links */
+.navbar-nav .nav-link {
+    color: #fff;
+}
+
+/* Style the main container */
+.container {
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Style buttons */
+.btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+
+/* Style the footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+/* Add custom styles for specific elements */
+/* Example: Change the color of h1 headings */
+h1 {
+    color: #3498db;
+}
+
+/* Example: Style links with FontAwesome icons */
+a .fa {
+    margin-right: 5px;
+}
+
+/* Example: Add a subtle hover effect to links */
+a:hover {
+    text-decoration: underline;
+}
+
+/* Example: Style list items */
+ul {
+    list-style: none;
+}
+
+/* Add more custom styles as needed for your project */

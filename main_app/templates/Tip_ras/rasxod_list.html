@@ -1,0 +1,39 @@
+<!-- rasxod_list.html -->
+{% extends 'Tip_ras/basess.html' %}
+
+{% block title %}Rasxod List{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Rasxod List</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rasxod in rasxods %}
+                    <tr>
+                        <td>{{ rasxod.id }}</td>
+                        <td>{{ rasxod.name_rasxod }}</td>
+                        <td>
+                            <a href="{% url 'rasxod_detail' rasxod.pk %}" class="btn btn-info btn-sm">
+                                <i class="fas fa-info-circle"></i> Details
+                            </a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3">No Rasxod records available.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{% url 'rasxod_create' %}" class="btn btn-primary mt-4">
+        <i class="fas fa-plus"></i> Create a new Rasxod
+    </a>
+{% endblock %}

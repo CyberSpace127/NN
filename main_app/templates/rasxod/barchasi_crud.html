@@ -1,0 +1,48 @@
+{% extends 'rasxod/bases.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">CRUD Operations</h1>
+
+    <!-- Create Form -->
+    <div class="card mb-4">
+        <div class="card-header">
+            Create Item
+        </div>
+        <div class="card-body">
+            <form id="create-form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- List of Items -->
+    <div class="card">
+        <div class="card-header">
+            Items
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                {% for item in barchasi_items %}
+                <li class="list-group-item">
+                    {{ item.name_rasxod }}
+                    <span class="float-right">
+                        <a href="{% url 'update_barchasi' item.pk %}" class="btn btn-sm btn-warning">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <form action="{% url 'delete_barchasi' item.pk %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </form>
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

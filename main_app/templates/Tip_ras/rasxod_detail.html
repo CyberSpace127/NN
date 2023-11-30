@@ -1,0 +1,14 @@
+<!-- rasxod_detail.html -->
+{% extends 'Tip_ras/basess.html' %}
+
+{% block title %}Rasxod Detail{% endblock %}
+
+{% block content %}
+    <h2>Rasxod Detail</h2>
+    <p>Name: {{ rasxod.name_rasxod }}</p>
+    <a href="{% url 'rasxod_update' rasxod.pk %}">Edit Rasxod</a>
+    <form method="post" action="{% url 'rasxod_delete' rasxod.pk %}">
+        {% csrf_token %}
+        <button type="submit">Delete Rasxod</button>
+    </form>
+{% endblock %}

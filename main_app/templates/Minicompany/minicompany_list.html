@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniCompany List</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Your custom CSS styles -->
+    <link rel="stylesheet" href="#">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">MiniCompany List</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Campaign</th>
+                    <!-- Add more table headers for other attributes -->
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for minicompany in minicompany_list %}
+                    <tr>
+                        <td>{{ minicompany.name }}</td>
+                        <td>{{ minicompany.campaign }}</td>
+                        <!-- Add more table data cells for other attributes -->
+                        <td>
+                            <a href="{% url 'minicompany_update' minicompany.pk %}" class="btn btn-primary">Edit</a>
+                            <a href="{% url 'minicompany_delete' minicompany.pk %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'minicompany_create' %}" class="btn btn-success">Add MiniCompany</a>
+        <a href="{% url 'company_list' %}" class="btn btn-secondary mt-3">Back to Company List</a>
+    </div>
+    <!-- Bootstrap JS and jQuery (for Bootstrap components that require it) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Staff Student Data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <select id="month-select">
+        <option value="">Select Month</option>
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+    </select>
+
+    <select id="year-select">
+        <option value="">Select Year</option>
+        <script>
+            for (let year = 2023; year <= 2030; year++) {
+                let option = document.createElement('option');
+                option.value = year;
+                option.text = year;
+                document.getElementById('year-select').appendChild(option);
+            }
+        </script>
+    </select>
+
+    <button onclick="fetchData()">Fetch Data</button>
+
+    <table id="data-table">
+        <tr>
+            <th>Staff Name</th>
+            <th>ФОТ</th>
+            <th>Соц.налог</th>
+            <th>Материалы_всего</th>
+            <th>Материалы_МВСП</th>
+            <th>Топливо_всего</th>
+            <th>Топливо_на.тягу</th>
+            <th>Эл.энергия_всего</th>
+            <th>Эл.энергия_на.тягу</th>
+            <th>Амортизация_всего</th>
+            <th>Амортизация_гр.ваг.</th>
+            <th>Рем.фонд</th>
+            <th>Прочие</th>
+            <th>всего</th>
+            <th>Staff Barchasi 2 Fakt</th>
+            <th>Staff Vsego Fakt</th>
+            <th>Students</th>
+        </tr>
+    </table>
+
+    <script>
+        function fetchData() {
+            let month = document.getElementById('month-select').value;
+            let year = document.getElementById('year-select').value;
+            fetch(`/staff-student-data/?month=${month}&year=${year}`)
+                .then(response => response.json())
+                .then(data => {
+                    let table = document.getElementById('data-table');
+                    table.innerHTML = '<tr><th>Staff Name</th><th>ФОТ</th><th>Соц.налог</th><th>Материалы_всего</th><th>Материалы_МВСП</th><th>Топливо_всего</th><th>Топливо_на.тягу</th><th>Эл.энергия_всего</th><th>Эл.энергия_на.тягу</th><th>Амортизация_всего</th><th>Амортизация_гр.ваг.</th><th>Рем.фонд</th><th>Прочие</th><th>всего</th><th>Staff Barchasi 2 Fakt</th><th>Staff Vsego Fakt</th><th>Students</th></tr>';
+                    data.forEach(item => {
+                        let row = table.insertRow(-1);
+                        row.insertCell(0).innerHTML = item.staff_name;
+                        let staffBarchasi1Fakt = item.staff_barchasi_1_fakt;
+                        for (let i = 0; i < 13; i++) {
+                            row.insertCell(i + 1).innerHTML = staffBarchasi1Fakt[i] || '';
+                        }
+                        let staffBarchasi2Fakt = item.staff_barchasi_2_fakt;
+                        for (let i = 0; i < 13; i++) {
+                            row.insertCell(i + 14).innerHTML = staffBarchasi2Fakt[i] || '';
+                        }
+                        let staffVsegoFakt = item.staff_vsego_fakt;
+                        for (let i = 0; i < 13; i++) {
+                            row.insertCell(i + 27).innerHTML = staffVsegoFakt[i] || '';
+                        }
+                        let studentData = item.students.map(student => {
+                            return `${student.student_name}: Barchasi 1 Fakt - ${student.student_barchasi_1_fakt.join(', ')}, Barchasi 2 Fakt - ${student.student_barchasi_2_fakt.join(', ')}, Vsego Fakt - ${student.student_vsego_fakt.join(', ')}`;
+                        }).join('<br>');
+                        row.insertCell(40).innerHTML = studentData;
+                    });
+                });
+        }
+    </script>
+</body>
+</html>

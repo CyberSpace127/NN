@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NN Model</title>
+</head>
+<body>
+    <h1>NN Model</h1>
+    
+    <!-- Ma'lumotni ko'rish (Read) -->
+    <h2>Ma'lumotlar ro'yxati</h2>
+    <ul>
+        {% for nn in nn_list %}
+            <li>{{ nn.name }}</li>
+            <!-- Boshqa atributlarni ko'rsatish mumkin -->
+            <a href="{% url 'nn_update' nn.pk %}">O'zgartirish</a> |
+            <a href="{% url 'nn_delete' nn.pk %}">O'chirish</a>
+        {% endfor %}
+    </ul>
+
+    <!-- Ma'lumot qo'shish (Create) -->
+    <h2>Ma'lumot qo'shish</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Qo'shish</button>
+    </form>
+
+    <!-- Ma'lumotni o'zgartirish (Update) -->
+    <h2>Ma'lumotni o'zgartirish</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Yangilash</button>
+    </form>
+
+    <!-- Ma'lumotni o'chirish (Delete) -->
+    <h2>Ma'lumotni o'chirish</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>O'chirishni tasdiqlang: {{ nn.name }}</p>
+        <button type="submit">O'chirish</button>
+    </form>
+</body>
+</html>

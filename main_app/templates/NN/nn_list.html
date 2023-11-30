@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NN List</title>
+</head>
+<body>
+    <h1>NN List</h1>
+    <ul>
+        {% for nn in nn_list %}
+            <li>{{ nn.name }}</li>
+            <!-- Boshqa atributlarni ko'rsatish mumkin -->
+            <a href="{% url 'nn_update' nn.pk %}">Изменить</a> |
+            <a href="{% url 'nn_delete' nn.pk %}">Удалить</a>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'nn_create' %}">Добавить информацию</a>
+</body>
+</html>

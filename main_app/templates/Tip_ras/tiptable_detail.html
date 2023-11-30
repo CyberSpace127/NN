@@ -1,0 +1,14 @@
+<!-- tiptable_detail.html -->
+{% extends 'Tip_ras/basess.html' %}
+
+{% block title %}TipTable Detail{% endblock %}
+
+{% block content %}
+    <h2>TipTable Detail</h2>
+    <p>Name: {{ tiptable.name_type }}</p>
+    <a href="{% url 'tiptable_update' tiptable.pk %}">Edit TipTable</a>
+    <form method="post" action="{% url 'tiptable_delete' tiptable.pk %}">
+        {% csrf_token %}
+        <button type="submit">Delete TipTable</button>
+    </form>
+{% endblock %}

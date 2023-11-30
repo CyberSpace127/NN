@@ -1,0 +1,9 @@
+{% extends 'sidebar/bases.html' %}
+
+{% block content %}
+  <h1>Barchasi Detail</h1>
+  <p>Name Rasxod: {{ barchasi.id_rasxod.name_rasxod }}</p>
+  <!-- Add more fields here -->
+  <a href="{% url 'barchasi_update' barchasi.pk %}" class="btn btn-primary">Edit Barchasi</a>
+  <a href="{% url 'barchasi_delete' barchasi.pk %}" class="btn btn-danger">Delete Barchasi</a>
+{% endblock %}

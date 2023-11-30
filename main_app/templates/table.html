@@ -1,0 +1,232 @@
+{% extends 'main_app/base.html' %}
+{% block content %}
+  <!-- Table content here -->
+  <h1>Таблица</h1>
+  
+    <!-- Search input -->
+    <div class="form-group">
+      <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search...">
+    </div>
+  <a href="{% url 'barchasi_create' %}" class="btn btn-primary">Заполнять таблицу</a>
+  <a href="{% url "testing" %}" class="btn btn-primary">Тип таблицы</a>
+  <a href="#" class="btn btn-primary">Тип расходов</a>
+  <a href="{% url "all-list" %}" class="btn btn-primary">Всего</a>
+  <div class="table-responsive">
+    <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            
+            {% for barchasi in table %}
+              <td>{{ barchasi.id_student }}</td> <!-- Add index number -->
+            {% endfor %}
+          </tr>
+          <tr>
+            <th>No.</th>
+            
+            {% for barchasi in table %}
+              <td>{{ forloop.counter }}</td> <!-- Add index number -->
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Тип таблицы</th>
+            {% for barchasi in table %}
+              <td class="searchable">{{ barchasi.id_tip_table }}</td>
+            {% endfor %}
+          </tr>
+          <tr>
+            <th>Тип расходов</th>
+            {% for barchasi in table %}
+              <td class="searchable">{{ barchasi.id_rasxod }}</td>
+            {% endfor %}
+          </tr>
+          <tr>
+            <th>Пр.затр</th>
+            {% for barchasi in table %}
+              <td class="searchable">{{ barchasi.pr_zatr}}</td>
+            {% endfor %}
+          </tr>
+          <tr>
+            <th>Расх.пер</th>
+            {% for barchasi in table %}
+              <td class="searchable">{{ barchasi.rasx_per }}</td>
+            {% endfor %}
+          </tr>
+          <tr>
+            <th>Всего</th>
+            {% for barchasi in table %}
+              <td class="searchable">{{ barchasi.всего }}</td>
+            {% endfor %}
+          </tr>
+            <tr>
+                <th>Прогноз_пр.затр</th>
+                {% for barchasi in table %}
+                  <td class="searchable">{{ barchasi.prognoz_zatr }}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <th>Прогноз_расх.пер</th>
+                {% for barchasi in table %}
+                  <td class="searchable">{{ barchasi.prognoz_rasx_per }}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <th>Прогоз_всего</th>
+                {% for barchasi in table %}
+                  <td class="searchable">{{ barchasi.prognoz_всего }}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <th>Факт_пр.затр</th>
+                {% for barchasi in table %}
+                  <td class="searchable">{{ barchasi.fakt_pr_zatr }}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <th>Факт_расх.пер</th>
+                {% for barchasi in table %}
+                  <td class="searchable">{{ barchasi.fakt_rasx_per }}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <th>Факт_всего</th>
+                {% for barchasi in table %}
+                  <td class="searchable">{{ barchasi.fakt_всего }}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <th>С начала месяца</th>
+                {% for barchasi in table %}
+                  <td class="searchable">{{ barchasi.с_начала_год }}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <th>К прогнозу</th>
+                {% for barchasi in table %}
+                  <td class="searchable">{{ barchasi.к_прогнозу }}</td>
+                {% endfor %}
+              </tr>
+              <!--tr>
+                <th></th>
+                {% for barchasi in barchasi_objects %}
+                  <td></td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <th>Тип расходов</th>
+                {% for vsego in vsego_objects %}
+                  <td class="searchable"></td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <th>Пр.затр</th>
+                {% for id_rasxod, data in results.items %}
+                  <td class="searchable">{{ data.zaMesPrZatr }}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <th>Расх.пер</th>
+                {% for id_rasxod, data in results.items %}
+                  <td class="searchable">{{ data.zaMesRasxPer }}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <th>Всего</th>
+                {% for barchasi in barchasi_objects %}
+                  <td class="searchable">#</td>
+                {% endfor %}
+              </tr>
+                <tr>
+                    <th>Прогноз_пр.затр</th>
+                    {% for barchasi in barchasi_objects %}
+                      <td class="searchable">#</td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <th>Прогноз_расх.пер</th>
+                    {% for barchasi in barchasi_objects %}
+                      <td class="searchable">#</td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <th>Прогоз_всего</th>
+                    {% for barchasi in barchasi_objects %}
+                      <td class="searchable">#</td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <th>Факт_пр.затр</th>
+                    {% for barchasi in barchasi_objects %}
+                      <td class="searchable">#</td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <th>Факт_расх.пер</th>
+                    {% for barchasi in barchasi_objects %}
+                      <td class="searchable">#</td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <th>Факт_всего</th>
+                    {% for barchasi in barchasi_objects %}
+                      <td class="searchable">#</td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <th>С начала месяца</th>
+                    {% for barchasi in barchasi_objects %}
+                      <td class="searchable">#</td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <th>К прогнозу</th>
+                    {% for barchasi in barchasi_objects %}
+                      <td class="searchable">#</td>
+                    {% endfor %}
+                  </tr-->
+                  
+
+          <!-- Continue adding other rows similarly -->
+        </tbody>
+      
+      </table>
+      
+      
+</div>
+<!-- JavaScript for searching -->
+<!-- JavaScript for searching -->
+<script>
+function searchTable() {
+  let input, filter, table, tr, td, i;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.querySelector(".table");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 1; i < tr.length; i++) { // Start from 1 to skip the header row
+    let visible = false; // Whether the row should be visible
+
+    // Loop through all cells in the row
+    td = tr[i].getElementsByTagName("td");
+    for (let j = 0; j < td.length; j++) {
+      if (td[j] && td[j].classList.contains("searchable")) {
+        if (td[j].textContent.toUpperCase().indexOf(filter) > -1) {
+          visible = true;
+          break; // No need to check other cells in the same row
+        }
+      }
+    }
+
+    // Show or hide the row based on visibility
+    if (visible) {
+      tr[i].style.display = "";
+    } else {
+      tr[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+{% endblock %}

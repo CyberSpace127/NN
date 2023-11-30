@@ -1,0 +1,72 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block page_title %}
+   {% for student in students %}
+       {{ student.student.st_id.name }}
+   {% endfor %}
+{% endblock page_title %}
+
+{% block content %}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Korxona Ishchilari Ro'yxati</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Ф.И.О</th>
+                                    <th>Электроная почта</th>
+                                    <th>Jinsi</th>
+                                    <th>Ish joyi</th>
+                                    <th>rasmi</th>
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for student in students %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{student.last_name}}, {{student.first_name}}</td>
+                                    <td>{{student.email}}</td>
+                                    <td>{{student.gender}}</td>
+                                    <td>{{student.student.st_id}}</td>
+                                    <td>
+                                        {% if student.profile_pic == ""  %}
+                                        No Image
+                                        {% else %}
+                                        <img class="img img-fluid mb-2" height="100" width="100"
+                                            src="{{student.profile_pic}}" alt="">
+                                        {% endif %}
+                                    </td>
+                                    {% if student.student.id %}
+                                    <td>
+                                        <a href="{% url 'edit_student' student.student.id %}" class="btn btn-primary">Edit</a> -
+                                    {% else %}
+    <!-- Handle the case where the ID is missing -->
+                                    {% endif %}
+                                    {% if student.student.id %}
+                                        <a href="{% url 'delete_student' student.student.id %}" class="btn btn-danger" onclick="return confirm('Are you sure about this ?')">Delete</a>
+                                    {% else %}
+                                    <!-- Handle the case where the ID is missing -->
+                                    {% endif %}
+                                
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

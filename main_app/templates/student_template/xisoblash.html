@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <form id="myForm">
+        <label for="id_tip_table">Tip Table ID:</label><br>
+             {{ form.id_tip_table }}
+        <label for="id_rasxod">Rasxod ID:</label><br>
+             {{ form.id_rasxod }}
+        <label for="data_date">Date:</label><br>
+        <input type="date" id="data_date" name="data_date"><br>
+        <label for="pr_zatr">Pr Zatr:</label><br>
+        <input type="number" id="pr_zatr" name="pr_zatr"><br>
+        <label for="rasx_per">Rasx Per:</label><br>
+        <input type="number" id="rasx_per" name="rasx_per"><br>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+    $(document).ready(function(){
+        $('#myForm').on('change', function(){
+            var id_tip_table = $('#id_tip_table').val();
+            var id_rasxod = $('#id_rasxod').val();
+            var data_date = $('#data_date').val();
+            var pr_zatr = $('#pr_zatr').val();
+            var rasx_per = $('#rasx_per').val();
+            $.ajax({
+                url: '/student/calculate_total/',  // Django view url
+                data: {
+                    'id_tip_table': id_tip_table,
+                    'id_rasxod': id_rasxod,
+                    'data_date': data_date,
+                    'pr_zatr': pr_zatr,
+                    'rasx_per': rasx_per
+                },
+                dataType: 'json',
+                success: function (data) {
+                    $('#result').html(data.result);
+                }
+            });
+        });
+    });
+    </script>
+
+</body>
+</html>

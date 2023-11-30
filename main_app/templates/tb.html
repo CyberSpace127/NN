@@ -1,0 +1,152 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="info">
+        <a href="#" class="d-block">{{user}}</a>
+    </div>
+    <div class="container">
+        <select id="monthSelect">
+            <option value="">Месяц</option>
+            <option value="january">Январь</option>
+            <option value="january">Февраль</option>
+            <option value="january">Март</option>
+            <option value="january">Апрель</option>
+            <option value="january">Май</option>
+            <option value="january">Июнь</option>
+            <option value="january">Июль</option>
+            <option value="january">Август</option>
+            <option value="january">Сентябрь</option>
+            <option value="january">Октябрь</option>
+            <option value="january">Ноябрь</option>
+            <option value="january">Декабрь</option>
+        </select>
+
+        <table class="table table-striped">
+            <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Всего</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <th>Тип расходов</th>
+                      <td>ФОТ</td>
+                      <td>Соц.налог</td>
+                      <td>Материалы_всего</td>
+                      <td>Материалы_МВСП</td>
+                      <td>Топливо_всего</td>
+                      <td>Топливо_на_тягу</td>
+                      <td>Эл.энергия_всего</td>
+                      <td>Эл.эгергия_на_тягу</td>
+                      <td>Амортизация_всего</td>
+                      <td>Амортизация_груз.ваг.</td>
+                      <td>Рем.фонд</td>
+                      <td>Прочие расходы</td>
+                      <td>Всего</td>
+                  </tr>
+                  <tr>
+                    {% for rasxod_id, zaMesPrZatr in result_dict.items %}
+                <tr>
+                    <td>{{ rasxod_id }}</td>
+                    <td>{{ zaMesPrZatr }}</td>
+                </tr>
+            {% endfor %}
+                  <tr>
+                    <th>Расх.пер</th>
+                    {% for barchasi in atom %}
+                      <td class="searchable">{{ barchasi.rasx_per }}</td>
+                    {% endfor %}
+                  </tr>
+                  <tr>
+                    <th>Всего</th>
+                    {% for barchasi in atom %}
+                      <td class="searchable">{{ barchasi.всего }}</td>
+                    {% endfor %}
+                  </tr>
+                    <tr>
+                        <th>Прогноз_пр.затр</th>
+                        {% for barchasi in atom %}
+                          <td class="searchable">{{ barchasi.prognoz_zatr }}</td>
+                        {% endfor %}
+                      </tr>
+                      <tr>
+                        <th>Прогноз_расх.пер</th>
+                        {% for barchasi in atom %}
+                          <td class="searchable">{{ barchasi.prognoz_rasx_per }}</td>
+                        {% endfor %}
+                      </tr>
+                      <tr>
+                        <th>Прогоз_всего</th>
+                        {% for barchasi in atom %}
+                          <td class="searchable">{{ barchasi.prognoz_всего }}</td>
+                        {% endfor %}
+                      </tr>
+                      <tr>
+                        <th>Факт_пр.затр</th>
+                        {% for barchasi in atom %}
+                          <td class="searchable">{{ barchasi.fakt_pr_zatr }}</td>
+                        {% endfor %}
+                      </tr>
+                      <tr>
+                        <th>Факт_расх.пер</th>
+                        {% for barchasi in atom %}
+                          <td class="searchable">{{ barchasi.fakt_rasx_per }}</td>
+                        {% endfor %}
+                      </tr>
+                      <tr>
+                        <th>Факт_всего</th>
+                        {% for barchasi in atom %}
+                          <td class="searchable">{{ barchasi.fakt_всего }}</td>
+                        {% endfor %}
+                      </tr>
+                      <tr>
+                        <th>С начала месяца</th>
+                        {% for barchasi in atom %}
+                          <td class="searchable">{{ barchasi.с_начала_год }}</td>
+                        {% endfor %}
+                      </tr>
+                      <tr>
+                        <th>К прогнозу</th>
+                        {% for barchasi in atom %}
+                          <td class="searchable">{{ barchasi.к_прогнозу }}</td>
+                        {% endfor %}
+                      </tr>
+
+            </tbody>
+        </table>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#monthSelect').change(function() {
+                var month = $(this).val();
+
+                // Clear the table body
+                $('#tableBody').empty();
+
+                // Get the data for the selected month
+                var data = results[month];
+
+                // Loop through the data and add each item to the table
+                for (var i = 0; i < data.length; i++) {
+                    $('#tableBody').append('<tr><td>' + data[i].id + '</td><td>' + data[i].user + '</td></tr>');
+                }
+            });
+        });
+    </script>
+
+{% endblock %}

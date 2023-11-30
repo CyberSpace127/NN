@@ -1,0 +1,6 @@
+ /* Add some basic styles for icons */
+ .action-icon {
+    color: #007bff; /* Blue color for icons */
+    cursor: pointer;
+    margin-right: 10px;
+}

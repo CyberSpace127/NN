@@ -1,0 +1,35 @@
+{% load static %}
+
+<html>
+<head>
+    <title>Prognoz List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Prognoz List</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prognoz in prognozs %}
+                    <tr>
+                        <td>{{ prognoz.id }}</td>
+                        <td>{{ prognoz.name_prognoz }}</td>
+                        <td>
+                            <a href="{% url 'iz_prognoz_edit' prognoz.id %}" class="btn btn-primary">Edit</a>
+                            <a href="{% url 'iz_prognoz_delete' prognoz.id %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'iz_prognoz_new' %}" class="btn btn-success">Add Prognoz</a>
+    </div>
+</body>
+</html>

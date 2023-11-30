@@ -1,0 +1,31 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "test",
+            "group": "test",
+            "database": "ivs",
+            "username": "ninja",
+            "password": "20251207"
+        }
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "python.formatting.provider": "none",
+    "remote.portsAttributes": {
+        "443": {
+            "protocol": "https"
+        },
+        "8443": {
+            "protocol": "https"
+        }
+    }
+}

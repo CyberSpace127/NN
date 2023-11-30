@@ -1,0 +1,170 @@
+{% extends "tb.html" %}
+{% load static %}
+
+
+{% block content %}
+<h3>Расходы основной деятельности АО "Узбекистон темир йуллари" за месяц</h3>
+<!-- Search input -->
+<div class="form-group">
+  <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search...">
+</div>
+
+<!--a href="{% url 'barchasi_create' %}" class="btn btn-primary">Заполнять таблицу</a-->
+<div class="table-responsive">
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>ПЕРЕВОЗКА</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>ПВД</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>ВСЕГО</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <th>№</th>
+      <th>Наимен.предприятии</th>
+      <th>ФОТ</th>
+      <th>Соц.налог</th>
+      <th>Материалы_всего</th>
+      <th>Материалы_МВСП</th>
+      <th>Топливо_всего</th>
+      <th>Топливо_на.тягу</th>
+      <th>Эл.энергия_всего</th>
+      <th>Эл.энергия_на.тягу</th>
+      <th>Амортизация_всего</th>
+      <th>Амортизация_гр.ваг.</th>
+      <th>Рем.фонд</th>
+      <th>Прочие </th>
+      <th>всего</th>
+      <th>ФОТ</th>
+      <th>Соц.налог</th>
+      <th>Материалы_всего</th>
+      <th>Материалы_МВСП</th>
+      <th>Топливо_всего</th>
+      <th>Топливо_на.тягу</th>
+      <th>Эл.энергия_всего</th>
+      <th>Эл.энергия_на.тягу</th>
+      <th>Амортизация_всего</th>
+      <th>Амортизация_гр.ваг.</th>
+      <th>Рем.фонд</th>
+      <th>Прочие </th>
+      <th>всего</th>
+      <th>ФОТ</th>
+      <th>Соц.налог</th>
+      <th>Материалы_всего</th>
+      <th>Материалы_МВСП</th>
+      <th>Топливо_всего</th>
+      <th>Топливо_на.тягу</th>
+      <th>Эл.энергия_всего</th>
+      <th>Эл.энергия_на.тягу</th>
+      <th>Амортизация_всего</th>
+      <th>Амортизация_гр.ваг.</th>
+      <th>Рем.фонд</th>
+      <th>Прочие </th>
+      <th>всего</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for staff_data in data %}
+        <tr>
+            <td>{{ staff_data.staff_name }}</td>
+            <tr>
+              {% for value in staff_barchasi_1_fakt %}
+                 <td>{{ value.0 }}</td>
+              {% endfor %}
+            </tr>
+            <td>{{ staff_data.staff_barchasi_1_fakt.0 }}</td>
+            <td>{{ staff_data.staff_barchasi_1_fakt.1 }}</td>
+            <td>{{ staff_data.staff_barchasi_1_fakt.2 }}</td>
+            <td>{{ staff_data.staff_barchasi_1_fakt.3 }}</td>
+            <td>{{ staff_data.staff_barchasi_1_fakt.4 }}</td>
+            <td>{{ staff_data.staff_barchasi_1_fakt.5 }}</td>
+            <td>{{ staff_data.staff_barchasi_1_fakt.6 }}</td>
+            <td>{{ staff_data.staff_barchasi_1_fakt.7 }}</td>
+            <td>{{ staff_data.staff_barchasi_1_fakt.8 }}</td>
+            <td>{{ staff_data.staff_barchasi_1_fakt.9 }}</td>
+            <td>{{ staff_data.staff_barchasi_1_fakt.10 }}</td>
+            <td>{{ staff_data.staff_barchasi_1_fakt.11 }}</td>
+            <td>{{ staff_data.staff_barchasi_1_fakt.12 }}</td>
+        </tr>
+    {% endfor %}
+  </tbody>
+<!-- JavaScript for searching -->
+<!-- JavaScript for searching -->
+<script>
+  document.getElementById('month-select').addEventListener('change', function() {
+      window.location.href = "{% url 'rju_big_table' %}" + this.value;
+  });
+  </script>
+
+
+<script>
+function searchTable() {
+let input, filter, table, tr, td, i;
+input = document.getElementById("searchInput");
+filter = input.value.toUpperCase();
+table = document.querySelector(".table");
+tr = table.getElementsByTagName("tr");
+
+for (i = 1; i < tr.length; i++) { // Start from 1 to skip the header row
+  let visible = false; // Whether the row should be visible
+
+  // Loop through all cells in the row
+  td = tr[i].getElementsByTagName("td");
+  for (let j = 0; j < td.length; j++) {
+    if (td[j] && td[j].classList.contains("searchable")) {
+      if (td[j].textContent.toUpperCase().indexOf(filter) > -1) {
+        visible = true;
+        break; // No need to check other cells in the same row
+      }
+    }
+  }
+
+  // Show or hide the row based on visibility
+  if (visible) {
+    tr[i].style.display = "";
+  } else {
+    tr[i].style.display = "none";
+  }
+}
+}
+</script>
+
+
+
+{% endblock %}
+</head>
+</html>

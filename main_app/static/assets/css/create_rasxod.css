@@ -1,0 +1,25 @@
+.header {
+  padding: 15px 15px 20px 15px;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #5584ff;
+}
+
+.header a {
+  color: white;
+}
+
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  color: white;
+}
+
+.fade-transition {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter,
+.fade-leave {
+  opacity: 0;
+}

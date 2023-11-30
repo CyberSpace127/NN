@@ -1,0 +1,23 @@
+<html>
+    <!DOCTYPE html>
+<head>
+    <title>{{ organizations.name }} ma'lumotlari</title>
+</head>
+<body>
+    <h1>{{ organizations.name }} ma'lumotlari</h1>
+
+    <h2>MTU_Company lar:</h2>
+    <ul>
+        {% for mtu_company in mtu_companies %}
+            <li>{{ mtu_company.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Korxonlar:</h2>
+    <ul>
+        {% for korxon in korxons %}
+            <li>{{ korxon.name }}</li>
+        {% endfor %}
+    </body>
+</ul>
+</html>

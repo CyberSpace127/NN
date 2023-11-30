@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if edit %}Edit{% else %}Add{% endif %} Prognoz</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>{% if edit %}Edit{% else %}Add{% endif %} Prognoz</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name_prognoz">Name:</label>
+                <input type="text" class="form-control" id="name_prognoz" name="name_prognoz" value="{{ prognoz.name_prognoz }}">
+            </div>
+            <button type="submit" class="btn btn-primary">{% if edit %}Update{% else %}Add{% endif %}</button>
+        </form>
+    </div>
+</body>
+</html>

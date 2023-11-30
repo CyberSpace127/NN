@@ -1,0 +1,71 @@
+{% extends 'main_app/base.html' %}
+{% load static %}
+{% block page_title %}
+   {% for student in students %}
+       {{ student.student.st_id.id }}
+   {% endfor %}
+{% endblock page_title %}
+
+{% block content %}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Korxona Ishchilari Ro'yxati</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Ф.И.О</th>
+                                    <th>Электроная почта</th>
+                                    <th>Jinsi</th>
+                                    <th>Ish joyi</th>
+                                    <th>rasmi</th>
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in table %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{item.admin.first_name}}, {{item.admin.last_name}}</td>
+                                    <td>{{item.admin.email}}</td>
+                                    <td>{{item.admin.gender }}</td>
+                                    <td>{{ item }}</td>
+                                    <td>
+                                        {% if item.admin.profile_pic == ""  %}
+                                        No Image
+                                        {% else %}
+                                        <img class="img img-fluid mb-2" height="100" width="100"
+                                            src="{{item.admin.profile_pic}}" alt="">
+                                        {% endif %}
+                                    </td>
+                                    {% if item.admin.student.id %}
+                                    <td>
+                                        <a href="{% url 'edit_student' item.admin.student.id %}" class="btn btn-primary">Edit</a>
+                                    {% else %}
+                                    {% endif %}
+                                    {% if item.admin.student.id %}
+                                        <a href="{% url 'delete_student' item.admin.student.id %}" class="btn btn-danger" onclick="return confirm('Are you sure about this ?')">Delete</a>
+                                    {% else %}
+                                    <!-- Handle the case where the ID is missing -->
+                                    {% endif %}
+                                
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

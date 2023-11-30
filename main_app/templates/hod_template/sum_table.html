@@ -1,0 +1,303 @@
+{% extends "tb.html" %}
+{% load static %}
+
+
+{% block content %}
+<h3>Расходы основной деятельности АО "Узбекистон темир йуллари" за месяц</h3>
+<!-- Search input -->
+<div class="form-group">
+  <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search...">
+</div>
+<form method="POST">
+  <!-- Oy uchun tanlash ro'yxati -->
+  <select id="month" name="month">
+      <option value="">Oy tanlang...</option>
+      <option value="1">Yanvar</option>
+      <option value="2">Fevral</option>
+      <option value="3">Mart</option>
+      <option value="4">Aprel</option>
+      <option value="5">May</option>
+      <option value="6">Iyun</option>
+      <option value="7">Iyul</option>
+      <option value="8">Avgust</option>
+      <option value="9">Sentabr</option>
+      <option value="10">Oktabr</option>
+      <option value="11">Noyabr</option>
+      <option value="12">Dekabr</option>
+  </select>
+
+  <!-- Yil uchun tanlash ro'yxati -->
+  <select id="year" name="year">
+      <option value="">Yil tanlang...</option>
+      <option value="2022">2022</option>
+      <option value="2023">2023</option>
+      <option value="2024">2024</option>
+      <option value="2025">2025</option>
+      <option value="2026">2026</option>
+      <option value="2027">2027</option>
+      <option value="2028">2028</option>
+      <option value="2029">2029</option>
+      <option value="2030">2030</option>
+      <option value="2031">2031</option>
+      <option value="2032">2032</option>
+      <option value="2033">2033</option>
+      <option value="2034">2034</option>
+      <option value="2035">2035</option>
+      <option value="2036">2036</option>
+      <option value="2037">2037</option>
+      <option value="2038">2038</option>
+      <option value="2039">2039</option>
+      <option value="2040">2040</option>
+      <option value="2041">2041</option>
+      <option value="2042">2042</option>
+      <option value="2043">2043</option>
+      <option value="2044">2044</option>
+      <option value="2045">2045</option>
+  </select>
+
+  <input type="submit" value="Malumotlarni ko'rish">
+</form>
+
+
+<!--a href="{% url 'barchasi_create' %}" class="btn btn-primary">Заполнять таблицу</a-->
+<div class="table-responsive">
+<table border="1" id="data-table" class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="39" style="text-align: center;">ПЕРЕВОЗКА</th>
+      <th colspan="39" style="text-align: center;">ПВД</th>
+      <th colspan="39" style="text-align: center;">ВСЕГО</th>
+      </tr>
+    <tr>
+      <th rowspan="2" style="text-align: center;">№</th>
+      <th rowspan="2" style="text-align: center;">Наимен.предприятии</th>
+      <th colspan="3" style="text-align: center;">ФОТ</th>
+      <th colspan="3" style="text-align: center;">Соц.налог</th>
+      <th colspan="3" style="text-align: center;">Материалы_всего</th>
+      <th colspan="3" style="text-align: center;">Материалы_МВСП</th>
+      <th colspan="3" style="text-align: center;">Топливо_всего</th>
+      <th colspan="3" style="text-align: center;">Топливо_на.тягу</th>
+      <th colspan="3" style="text-align: center;">Эл.энергия_всего</th>
+      <th colspan="3" style="text-align: center;">Эл.энергия_на.тягу</th>
+      <th colspan="3" style="text-align: center;">Амортизация_всего</th>
+      <th colspan="3" style="text-align: center;">Амортизация_гр.ваг.</th>
+      <th colspan="3" style="text-align: center;">Рем.фонд</th>
+      <th colspan="3" style="text-align: center;">Прочие </th>
+      <th colspan="3" style="text-align: center;">всего</th>
+      <th colspan="3" style="text-align: center;">ФОТ</th>
+      <th colspan="3" style="text-align: center;">Соц.налог</th>
+      <th colspan="3" style="text-align: center;">Материалы_всего</th>
+      <th colspan="3" style="text-align: center;">Материалы_МВСП</th>
+      <th colspan="3" style="text-align: center;">Топливо_всего</th>
+      <th colspan="3" style="text-align: center;">Топливо_на.тягу</th>
+      <th colspan="3" style="text-align: center;">Эл.энергия_всего</th>
+      <th colspan="3" style="text-align: center;">Эл.энергия_на.тягу</th>
+      <th colspan="3" style="text-align: center;">Амортизация_всего</th>
+      <th colspan="3" style="text-align: center;">Амортизация_гр.ваг.</th>
+      <th colspan="3" style="text-align: center;">Рем.фонд</th>
+      <th colspan="3" style="text-align: center;">Прочие </th>
+      <th colspan="3" style="text-align: center;">всего</th>
+      <th colspan="3" style="text-align: center;">ФОТ</th>
+      <th colspan="3" style="text-align: center;">Соц.налог</th>
+      <th colspan="3" style="text-align: center;">Материалы_всего</th>
+      <th colspan="3" style="text-align: center;">Материалы_МВСП</th>
+      <th colspan="3" style="text-align: center;">Топливо_всего</th>
+      <th colspan="3" style="text-align: center;">Топливо_на.тягу</th>
+      <th colspan="3" style="text-align: center;">Эл.энергия_всего</th>
+      <th colspan="3" style="text-align: center;">Эл.энергия_на.тягу</th>
+      <th colspan="3" style="text-align: center;">Амортизация_всего</th>
+      <th colspan="3" style="text-align: center;">Амортизация_гр.ваг.</th>
+      <th colspan="3" style="text-align: center;">Рем.фонд</th>
+      <th colspan="3" style="text-align: center;">Прочие </th>
+      <th colspan="3" style="text-align: center;">всего</th>
+    </tr>
+    <tr>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+      <th>Факт 2022г</th>
+      <th>Факт 2023г</th>
+      <th>Разница (+;-)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      {% for value in all_sum %}
+         <td>{{ value }}</td>
+      {% endfor %}
+    </tr>
+    {% for student, perevozka in student_perevozka_items.items %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ student.admin.last_name }}</td>
+        {% for p in perevozka %}
+            <td>{{ p }}</td>
+        {% endfor %}  
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+
+
+
+<!-- JavaScript for searching -->
+<!-- JavaScript for searching -->
+<script>
+  document.getElementById('month-select').addEventListener('change', function() {
+      window.location.href = "{% url 'rju_big_table' %}" + this.value;
+  });
+  </script>
+
+
+<script>
+function searchTable() {
+let input, filter, table, tr, td, i;
+input = document.getElementById("searchInput");
+filter = input.value.toUpperCase();
+table = document.querySelector(".table");
+tr = table.getElementsByTagName("tr");
+
+for (i = 1; i < tr.length; i++) { // Start from 1 to skip the header row
+  let visible = false; // Whether the row should be visible
+
+  // Loop through all cells in the row
+  td = tr[i].getElementsByTagName("td");
+  for (let j = 0; j < td.length; j++) {
+    if (td[j] && td[j].classList.contains("searchable")) {
+      if (td[j].textContent.toUpperCase().indexOf(filter) > -1) {
+        visible = true;
+        break; // No need to check other cells in the same row
+      }
+    }
+  }
+
+  // Show or hide the row based on visibility
+  if (visible) {
+    tr[i].style.display = "";
+  } else {
+    tr[i].style.display = "none";
+  }
+}
+}
+</script>
+
+
+
+{% endblock %}
+</head>
+</html>

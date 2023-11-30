@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Big Table</title>
+</head>
+<body>
+    <h1>Big Table</h1>
+    <form method="get" action="">
+        <label for="month">Month:</label>
+        <input type="number" name="month" id="month" value="{{ month }}">
+        <label for="year">Year:</label>
+        <input type="number" name="year" id="year" value="{{ year }}">
+        <input type="submit" value="Filter">
+    </form>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Staff Name</th>
+                <th>Staff Table 1 Fakt</th>
+                <th>Staff Table 2 Fakt</th>
+                <th>Staff Vsego Fakt</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for staff_data in data %}
+                <tr>
+                    <td>{{ staff_data.staff_name }}</td>
+                    <td>{{ staff_data.staff_barchasi_1_fakt|join:", " }}</td>
+                    <td>{{ staff_data.staff_barchasi_2_fakt|join:", " }}</td>
+                    <td>{{ staff_data.staff_vsego_fakt|join:", " }}</td>
+                </tr>
+                {% for student_data in staff_data.students %}
+                    <tr>
+                        <td>{{ student_data.student_name }}</td>
+                        <td>{{ student_data.student_barchasi_1_fakt|join:", " }}</td>
+                        <td>{{ student_data.student_barchasi_2_fakt|join:", " }}</td>
+                        <td>{{ student_data.student_vsego_fakt|join:", " }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

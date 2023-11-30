@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NN Create</title>
+</head>
+<body>
+    <h1>NN Create</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить</button>
+    </form>
+    <a href="{% url 'nn_list' %}">Назад</a>
+</body>
+</html>

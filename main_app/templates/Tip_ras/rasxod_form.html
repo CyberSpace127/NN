@@ -1,0 +1,13 @@
+<!-- rasxod_form.html -->
+{% extends 'Tip_ras/basess.html' %}
+
+{% block title %}{% if form.instance.pk %}Edit{% else %}Create{% endif %} Rasxod{% endblock %}
+
+{% block content %}
+    <h2>{% if form.instance.pk %}Edit{% else %}Create{% endif %} Rasxod</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if form.instance.pk %}Update{% else %}Create{% endif %} Rasxod</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>O'chirishni Tasdiqlash</title>
+</head>
+<body>
+    <h1>O'chirishni Tasdiqlash</h1>
+    <p>O'chirishni tasdiqlang: {{ nn.name }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+    <a href="{% url 'nn_list' %}">Назад</a>
+</body>
+</html>

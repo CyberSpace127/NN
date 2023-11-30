@@ -1,0 +1,95 @@
+{% extends 'main_app/base.html' %}
+{% block content %}
+  <h1>Таблица</h1>
+  
+    <!-- Search input -->
+    <div class="form-group">
+      <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search...">
+    </div>
+  <a href="{% url 'barchasi_create' %}" class="btn btn-primary">Заполнять таблицу</a>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>№</th>
+          <th>Тип таблица</th>
+          <th>Тип расходов</th>
+          <th>Дата</th>
+          <th>Пр.затр</th>
+          <th>Расх.пер</th>
+          <th>Прогноз_пр.затр</th>
+          <th>Прогноз_расх.пер</th>
+          <th>Факт_пр.затр</th>
+          <th>Факт_расх.пер</th>
+          <th>Всего</th>
+          <th>С начала месяца</th>
+          <th>К прогнозу</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for barchasi in barchasi_objects %}
+          <tr>
+            <td>{{ forloop.counter }}</td> <!-- Add index number -->
+            <td class="searchable">{{ barchasi.id_tip_table }}</td>
+            <td class="searchable">{{ barchasi.id_rasxod }}</td>
+            <td class="searchable">{{ barchasi.data_date }}</td>
+            <td class="searchable">{{ barchasi.pr_zatr}}</td>
+            <td class="searchable">{{ barchasi.rasx_per }}</td>
+            <td class="searchable">{{ barchasi.prognoz_zatr }}</td>
+            <td class="searchable">{{ barchasi.prognoz_rasx_per }}</td>
+            <td class="searchable">{{ barchasi.fakt_pr_zatr }}</td>
+            <td class="searchable">{{ barchasi.fakt_rasx_per }}</td>
+
+            <!-- Display the calculated totals -->
+            <td class="searchable">{{ barchasi.всего }}</td> 
+            <td class="searchable">{{ barchasi.с_начала_год }}</td> 
+            <td class="searchable">{{ barchasi.к_прогнозу }}</td>
+            <td>  
+              <a href="{% url 'barchasi_detail' barchasi.pk %}" class="btn btn-info"><i class="fas fa-eye"></i> </a>
+              <a href="{% url 'barchasi_update' barchasi.pk %}" class="btn btn-warning"><i class="fas fa-edit"></i> </a>
+              <a href="{% url 'barchasi_delete' barchasi.pk %}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- JavaScript for searching -->
+<!-- JavaScript for searching -->
+<script>
+  function searchTable() {
+    let input, filter, table, tr, td, i;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.querySelector(".table");
+    tr = table.getElementsByTagName("tr");
+
+    for (i = 1; i < tr.length; i++) { // Start from 1 to skip the header row
+      let visible = false; // Whether the row should be visible
+
+      // Loop through all cells in the row
+      td = tr[i].getElementsByTagName("td");
+      for (let j = 0; j < td.length; j++) {
+        if (td[j] && td[j].classList.contains("searchable")) {
+          if (td[j].textContent.toUpperCase().indexOf(filter) > -1) {
+            visible = true;
+            break; // No need to check other cells in the same row
+          }
+        }
+      }
+
+      // Show or hide the row based on visibility
+      if (visible) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+</script>
+
+
+
+{% endblock %}

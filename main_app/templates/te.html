@@ -1,0 +1,356 @@
+{% extends 'main_app/base.html' %}
+{% block content %}
+  <h1>Таблица</h1>
+
+  <!-- Search input -->
+  <div class="form-group">
+    <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search...">
+  </div>
+  <form method="POST">
+    <!-- Oy uchun tanlash ro'yxati -->
+    <select id="month" name="month">
+        <option value="">Oy tanlang...</option>
+        <option value="1">Yanvar</option>
+        <option value="2">Fevral</option>
+        <option value="3">Mart</option>
+        <option value="4">Aprel</option>
+        <option value="5">May</option>
+        <option value="6">Iyun</option>
+        <option value="7">Iyul</option>
+        <option value="8">Avgust</option>
+        <option value="9">Sentabr</option>
+        <option value="10">Oktabr</option>
+        <option value="11">Noyabr</option>
+        <option value="12">Dekabr</option>
+    </select>
+  
+    <!-- Yil uchun tanlash ro'yxati -->
+    <select id="year" name="year">
+        <option value="">Yil tanlang...</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
+        <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
+        <option value="2030">2030</option>
+        <option value="2031">2031</option>
+        <option value="2032">2032</option>
+        <option value="2033">2033</option>
+        <option value="2034">2034</option>
+        <option value="2035">2035</option>
+        <option value="2036">2036</option>
+        <option value="2037">2037</option>
+        <option value="2038">2038</option>
+        <option value="2039">2039</option>
+        <option value="2040">2040</option>
+        <option value="2041">2041</option>
+        <option value="2042">2042</option>
+        <option value="2043">2043</option>
+        <option value="2044">2044</option>
+        <option value="2045">2045</option>
+    </select>
+  
+    <input type="submit" value="Malumotlarni ko'rish">
+  </form>
+
+  <a href="{% url 'barchasi_create' %}" class="btn btn-primary">Заполнять таблицу</a>
+  <!--a href="{% url "rasxod_list" %}" class="btn btn-primary">Тип таблицы</a>
+  <a href="#" class="btn btn-primary">Тип расходов</a>
+  <a href="#" class="btn btn-primary">Всего</a>
+  <select id="monthSelect" onchange="fetchData()">
+    <option value="01">January</option>
+    <option value="02">February</option>
+    <option value="03">March</option>
+    <option value="04">April</option>
+    <option value="05">May</option>
+    <option value="06">June</option>
+    <option value="07">July</option>
+    <option value="08">August</option>
+    <option value="09">September</option>
+    <option value="10">October</option>
+    <option value="11">November</option>
+    <option value="12">December</option>
+  </select-->
+
+
+
+  <table border="1" id="data-table" class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th colspan="13" style="text-align: center;">ПЕРЕВОЗКА</th>
+        
+        <th colspan="13" style="text-align: center;">ПВД</th>
+       
+        <th colspan="13" style="text-align: center;">ВСЕГО</th>
+    
+      </tr>
+      <tr>
+        <th rowspan="2" style="text-align: center;">Месяц</th>
+        <th rowspan="2" style="text-align: center;">ФОТ</th>
+        <th rowspan="2" style="text-align: center;">Соц.налог</th>
+        <th colspan="2" style="text-align: center;">Материалы</th>
+        <th colspan="2" style="text-align: center;">Топливо</th>
+        <th colspan="2" style="text-align: center;">Эл.энергия</th>
+        <th colspan="2" style="text-align: center;">Амортизация</th>
+        <th rowspan="2" style="text-align: center;">Рем.фонд</th>
+        <th rowspan="2" style="text-align: center;">Прочие </th>
+        <th rowspan="2" style="text-align: center;">всего</th>
+        <th rowspan="2" style="text-align: center;">ФОТ</th>
+        <th rowspan="2" style="text-align: center;">Соц.налог</th>
+        <th colspan="2" style="text-align: center;">Материалы</th>
+        <th colspan="2" style="text-align: center;">Топливо</th>
+        <th colspan="2" style="text-align: center;">Эл.энергия</th>
+        <th colspan="2" style="text-align: center;">Амортизация</th>
+        <th rowspan="2" style="text-align: center;">Рем.фонд</th>
+        <th rowspan="2" style="text-align: center;">Прочие </th>
+        <th rowspan="2" style="text-align: center;">всего</th>
+        <th rowspan="2" style="text-align: center;">ФОТ</th>
+        <th rowspan="2" style="text-align: center;">Соц.налог</th>
+        <th colspan="2" style="text-align: center;">Материалы</th>
+        <th colspan="2" style="text-align: center;">Топливо</th>
+        <th colspan="2" style="text-align: center;">Эл.энергия</th>
+        <th colspan="2" style="text-align: center;">Амортизация</th>
+        <th rowspan="2" style="text-align: center;">Рем.фонд</th>
+        <th rowspan="2" style="text-align: center;">Прочие </th>
+        <th rowspan="2" style="text-align: center;">всего</th>
+      </tr>
+      <tr>
+        <th>всего</th>
+        <th>МВСП</th>
+        <th>всего</th>
+        <th>на_тягу</th>
+        <th>всего</th>
+        <th>на_тягу</th>
+        <th>всего</th>
+        <th>груз.ваг.</th>
+        <th>всего</th>
+        <th>МВСП</th>
+        <th>всего</th>
+        <th>на_тягу</th>
+        <th>всего</th>
+        <th>на_тягу</th>
+        <th>всего</th>
+        <th>груз.ваг.</th>
+        <th>всего</th>
+        <th>МВСП</th>
+        <th>всего</th>
+        <th>на_тягу</th>
+        <th>всего</th>
+        <th>на_тягу</th>
+        <th>всего</th>
+        <th>груз.ваг.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>За.мес_Пр.затр</th>
+        {% for item in perevozka1 %}
+           <td class="searchable">{{ item.0 }}</td>
+        {% endfor %}
+        {% for item in pvd1 %}
+          <td class="searchable">{{ item.0 }}</td>
+        {% endfor %}
+        
+        {% for item in vsego_pr_zatr_1 %}
+           <td class="searchable">{{ item }}</td>
+        {% endfor %}
+      </tr>
+      <tr>
+        <th>За.мес_Расх.пер</th>
+        {% for item in perevozka2 %}
+          <td class="searchable">{{ item.0 }}</td>
+        {% endfor %}
+        {% for item in pvd2 %}
+          <td class="searchable">{{ item.0 }}</td>
+        {% endfor %}
+
+        {% for item in vsego_fakt_rasx_per %}
+          <td class="searchable">{{ item }}</td>
+        {% endfor %}
+      </tr>
+      <tr>
+        <th>За.мес_Всего</th>
+        {% for item in perevozka3 %}
+          <td class="searchable">{{ item.0 }}</td>
+        {% endfor %}
+        {% for item in pvd3 %}
+           <td class="searchable">{{ item.0 }}</td>
+        {% endfor %}
+
+        {% for item in vsego_zames_всего %}
+           <td class="searchable">{{ item }}</td>
+        {% endfor %}
+      </tr>
+      <tr>
+        <th>Прогноз_пр.затр</th>
+        {% for barchasi in perv4 %}
+          <td class="searchable">{{ barchasi.prognoz_zatr }}</td>
+        {% endfor %}
+
+        {% for item in pv4 %}
+          <td>{{ item.prognoz_zatr }} </td> 
+        {% endfor %}
+
+        {% for item in vsego_prognoz_pr_zatr %}
+           <td class="searchable">{{ item }}</td>
+        {% endfor %} 
+      </tr>
+      <tr>
+        <th>Прогноз_расх.пер</th>
+        {% for barchasi in perv5 %}
+          <td class="searchable">{{ barchasi.prognoz_rasx_per }}</td>
+        {% endfor %}
+
+        {% for item in pv5 %}
+          <td>{{ item.prognoz_rasx_per }} </td> 
+        {% endfor %}
+
+        {% for item in vsego_prognoz_rasx_per %}
+        <td class="searchable">{{ item }}</td>
+      {% endfor %}
+      </tr>
+      <tr>
+        <th>Прогоз_всего</th>
+        {% for barchasi in perv6 %}
+          <td class="searchable">{{ barchasi.prognoz_всего }}</td>
+        {% endfor %}
+
+        {% for item in pv6 %}
+          <td>{{ item.prognoz_всего }} </td> 
+        {% endfor %}
+
+        {% for item in vsego_prognoz_всего %}
+        <td class="searchable">{{ item }}</td>
+      {% endfor %}
+      </tr>
+      <tr>
+        <th>Факт_пр.затр</th>
+        {% for barchasi in perv7 %}
+          <td class="searchable">{{ barchasi.fakt_pr_zatr }}</td>
+        {% endfor %}
+
+        {% for item in pv7 %}
+          <td>{{ item.fakt_pr_zatr }} </td> 
+        {% endfor %}
+
+        {% for item in vsego_fakt_przatr %}
+        <td class="searchable">{{ item }}</td>
+        {% endfor %}
+        
+      </tr>
+      <tr>
+        <th>Факт_расх.пер</th>
+        {% for barchasi in perv8 %}
+          <td class="searchable">{{ barchasi.fakt_rasx_per }}</td>
+        {% endfor %}
+
+        {% for item in pv8 %}
+          <td>{{ item.fakt_rasx_per }} </td> 
+        {% endfor %}
+
+        {% for item in vsego_fakt_rasx_per1 %}
+        <td class="searchable">{{ item }}</td>
+        {% endfor %}
+      </tr>
+      <tr>
+        <th>Факт_всего</th>
+        {% for barchasi in perv9 %}
+          <td class="searchable">{{ barchasi.fakt_всего }}</td>
+        {% endfor %}
+
+        {% for item in pv9 %}
+          <td>{{ item.fakt_всего }} </td> 
+        {% endfor %}
+
+        {% for item in vsego_fakt_всего1 %}
+        <td class="searchable">{{ item }}</td>
+        {% endfor %}
+      </tr>
+      <tr>
+        <th>с начала год</th>
+        {% for item in rezult %}
+          <td class="searchable">{{ item }}</td>
+        {% endfor %}
+        
+        {% for item in pvd_с_начала_год %}
+          <td class="searchable">{{ item }}</td>
+        {% endfor %}
+
+        {% for item in с_начала_год %}
+           <td class="searchable">{{ item }}</td>
+        {% endfor %}
+      </tr>
+      <tr>
+        <th>К прогнозу</th>
+        {% for barchasi in perv11 %}
+          <td class="searchable">{{ barchasi.к_прогнозу }}</td>
+        {% endfor %}
+
+        {% for item in pv11 %}
+          <td class="searchable">{{ item.к_прогнозу }}</td>
+        {% endfor %}
+
+        {% for item in к_прогнозу %}
+           <td class="searchable">{{ item }}</td>
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+  
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    fetchData();
+});
+
+function fetchData() {
+    var month = document.getElementById('monthSelect').value;
+    fetch('/api/vsego/?month=' + month)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('dataContainer').innerHTML = data;
+        });
+}
+
+</script>
+<!-- JavaScript for searching -->
+<script>
+function searchTable() {
+  let input, filter, table, tr, td, i;
+  input = document.getElementById("searchInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("data-table");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 2; i < tr.length; i++) { // Start from 2 to skip the header rows
+    let visible = false; // Whether the row should be visible
+
+    // Loop through all cells in the row (td and th elements)
+    td = tr[i].getElementsByTagName("td");
+    th = tr[i].getElementsByTagName("th");
+    for (let j = 0; j < td.length + th.length; j++) {
+      let cell = j < td.length ? td[j] : th[j - td.length];
+      if (cell && cell.classList.contains("searchable")) {
+        if (cell.textContent.toUpperCase().indexOf(filter) > -1) {
+          visible = true;
+          break; // No need to check other cells in the same row
+        }
+      }
+    }
+
+    // Show or hide the row based on visibility
+    if (visible) {
+      tr[i].style.display = "";
+    } else {
+      tr[i].style.display = "none";
+    }
+  }
+}
+</script>
+{% endblock %}
