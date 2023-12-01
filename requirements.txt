@@ -1,6 +1,5 @@
 ﻿dj-database-url==2.1.0
 Django
-django_filters
 django-environ==0.11.2
 django-jazzmin==2.6.0
 djangorestframework==3.14.0
