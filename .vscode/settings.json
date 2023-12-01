@@ -1,19 +1,15 @@
 {
     "sqltools.connections": [
         {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
             "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MySQL",
-            "name": "test",
-            "group": "test",
-            "database": "ivs",
-            "username": "ninja",
-            "password": "20251207"
+            "server": "postgres://financedb_8dqv_user:IO3rY1dJnY1ORSwsr130MHPZXiicXyXp@/financedb_8dqv",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "nn",
+            "group": "website",
+            "database": "financedb_8dqv",
+            "username": "financedb_8dqv_user",
+            "password": "IO3rY1dJnY1ORSwsr130MHPZXiicXyXp"
         }
     ],
     "[python]": {

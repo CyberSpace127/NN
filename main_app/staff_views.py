@@ -1293,6 +1293,28 @@ def ForTest(request, month=None):
     return render(request, "staff_template/for_test.html",  context)
 
 
+
+
+from rest_framework import serializers, viewsets, filters
+from .models import Barchasi
+
+class BarchasiSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Barchasi
+        fields = '__all__'
+
+from django_filters.rest_framework import DateFromToRangeFilter
+from django_filters.rest_framework import DjangoFilterBackend
+
+class BarchasiViewSet(viewsets.ModelViewSet):
+    queryset = Barchasi.objects.all()
+    serializer_class = BarchasiSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = {
+        'data_date': ['gte', 'lte'],
+    }
+
+
         
 
 
@@ -1409,4 +1431,3 @@ def ForTest(request, month=None):
 
 
 ########################### DRF API ###########################
-

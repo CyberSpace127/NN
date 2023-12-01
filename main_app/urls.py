@@ -10,6 +10,7 @@ from . import views
 from .student_views import MiniTableView
 
 
+
 urlpatterns = [
     path("", views.login_page, name='login_page'),
     path("get_attendance", views.get_attendance, name='get_attendance'),
@@ -132,6 +133,8 @@ urlpatterns = [
     path('staff/BIG_T/', staff_views.BIG_T, name='big_t'),
     path('create_staff_table', staff_views.create_staff_table, name='create_staff_table'),
     path('staff/for-test/', staff_views.ForTest, name='fortest'),
+   # path('get_data/', staff_views.get_data, name='get_data'),
+
 
 
 
@@ -157,7 +160,7 @@ urlpatterns = [
     path('student/view/result/', student_views.student_view_result,
          name='student_view_result'),
 
-    path('barchasi/', student_views.BarchasiListView.as_view(), name='barchasi_list'),
+    path('barchasi_data/', student_views.BarchasiListView.as_view(), name='barchasi_list'),
     path('barchasi/<int:pk>/', student_views.BarchasiDetailView.as_view(), name='barchasi_detail'),
     path('barchasi/create/', student_views.create, name='barchasi_create'),
     path('barchasi/<int:pk>/update/', student_views.barchasi_update, name='barchasi_update'),

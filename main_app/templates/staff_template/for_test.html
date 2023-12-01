@@ -8,7 +8,7 @@
 <div class="form-group">
   <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search...">
 </div>
-<form method="GET" action="{% url 'fortest' %}">
+{% comment %} <form method="GET" action="{% url 'fortest' %}">
   <label for="start_year">Start year:</label>
   <input type="number" id="start_year" name="start_year" value="{{ start_year }}" min="2000" max="2023">
   <label for="start_month">Start month:</label>
@@ -18,8 +18,8 @@
   <label for="end_month">End month:</label>
   <input type="number" id="end_month" name="end_month" value="{{ end_month }}" min="1" max="12">
   <button type="submit">Submit</button>
-</form>
-<!--form action="/staff/for-test/" method="post">
+</form> {% endcomment %}
+<form action="staff/get_data/" method="post">
     {% csrf_token %}
     <label for="start_date">Boshlanish sanasi:</label>
     <input type="date" id="start_date" name="start_date">
@@ -28,7 +28,7 @@
     <input type="date" id="end_date" name="end_date">
 
     <input type="submit" value="Submit">
-</form-->
+</form>
 
 
 <!--a href="{% url 'barchasi_create' %}" class="btn btn-primary">Заполнять таблицу</a-->

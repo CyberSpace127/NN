@@ -95,8 +95,8 @@ section .signin .content .form .inputBox input {
   background: #333;
   border: none;
   outline: none;
-  padding: 25px 10px 7.5px;
-  border-radius: 4px;
+  padding: 25px 10px 7px;
+  border-radius: 15px;
   color: #fff;
   font-weight: 500;
   font-size: 1em;

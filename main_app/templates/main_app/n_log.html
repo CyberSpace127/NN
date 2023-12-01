@@ -5,73 +5,57 @@
 <html lang="en">
 
 <head>
-
-  <meta charset="UTF-8">
-
-  <title>CodePen - Animated Login Form using Html &amp; CSS Only</title>
-
-  <link rel="stylesheet" href="{% static "css/n_log.css" %}">
-
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/n_log.css' %}">
+    <title>NN login</title>
 </head>
 
-<body>
-  <!-- partial:index.partial.html -->
+ <body> <!-- partial:index.partial.html -->
 
   <section> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
 
-    <div class="signin">
+   <div class="signin">
 
-      <div class="content">
-        <div class="card">
-            <div class="card-body login-card-body">
-                <p class="login-box-msg">Войдите, чтобы начать сеанс</p>
-                {% if messages %}
-                <div class="col-12">
-                    {% for message in messages %}
-                    {% if message.tags == 'error' %}
-                    <div class="alert alert-danger text-center ">
-                        {{message }}
-                    </div>
-                    {% endif %}
-                    {% endfor %}
-                </div>
-                {% endif %}
-    <form action="doLogin/" method="post">
-        {% csrf_token %}
+    <div class="content">
 
-        <div class="form">
+     <h2>NN</h2>
 
-          <div class="inputBox">
+     <div class="form">
+         <form action="doLogin/" method="post">
+                    {% csrf_token %}
 
-            <input type="text" required> <i>Username</i>
+      <div class="inputBox">
 
-          </div>
-
-          <div class="inputBox">
-
-            <input type="password" required> <i>Password</i>
-
-          </div>
-
-          <div class="links"> <a href="{% url 'password_reset' %}">Forgot Password</a>
-
-          </div>
-
-          <div class="inputBox">
-
-            <input type="submit" value="Login">
-
-          </div>
-
-        </div>
+          <label>
+              <input required type="email" name='email' class="form-control" placeholder="Email">
+          </label>
 
       </div>
-    </form>
+           <br/>
+
+      <div class="inputBox">
+
+          <label>
+              <input required type="password" name='password' class="form-control" placeholder="Password">
+          </label>
+
+      </div>
+
+
+      <div class="inputBox">
+          <br/>
+       <input type="submit" value="Login">
+
+      </div>
+         </form>
+     </div>
 
     </div>
 
+   </div>
+
   </section> <!-- partial -->
 
-</body>
+ </body>
 
 </html>

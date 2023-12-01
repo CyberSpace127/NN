@@ -320,8 +320,6 @@ def MiniTable(request):
     v9 = Barchasi.objects.filter(id_student_id=student, data_date__month=selected_month, data_date__year=selected_year).values('vsego_fakt_всего').distinct()
     v10 = Barchasi.objects.filter(id_student_id=student, data_date__month=selected_month, data_date__year=selected_year).values('vsego_с_начала_год').distinct()
     v11 = Barchasi.objects.filter(id_student_id=student, data_date__month=selected_month, data_date__year=selected_year).values('vsego_к_прогнозу').distinct()
-
-
     # oyldingi yilning malumotlarini chiqarish
 
     select_month = request.POST.get('month')
