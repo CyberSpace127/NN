@@ -30,7 +30,7 @@ def login_page(request):
             return redirect(reverse("staff_home"))
         else:
             return redirect(reverse("student_home"))
-    return render(request, 'main_app/n_log.html')
+    return render(request, 'main_app/login.html')
 
 
 def doLogin(request, **kwargs):
