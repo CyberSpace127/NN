@@ -10,6 +10,17 @@
             "database": "financedb_8dqv",
             "username": "financedb_8dqv_user",
             "password": "IO3rY1dJnY1ORSwsr130MHPZXiicXyXp"
+        },
+        {
+            "previewLimit": 50,
+            "server": "dpg-clk1qhd8td7s73da3g0g-a.oregon-postgres.render.com",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "war",
+            "group": "ninja",
+            "database": "financedb_8dqv",
+            "username": "financedb_8dqv_user",
+            "password": "IO3rY1dJnY1ORSwsr130MHPZXiicXyXp"
         }
     ],
     "[python]": {
