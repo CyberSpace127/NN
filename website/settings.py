@@ -93,7 +93,7 @@ import os, dj_database_url
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(env('DATABASE_KEY'))
+    'default': dj_database_url.parse(env('DATABASE_URL'))
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
     #     'NAME': 'django',
